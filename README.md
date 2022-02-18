@@ -13,9 +13,9 @@ Run `make run` in the root directory to actually run the game in QEMU.
 Once the game is running, terminate QEMU with `CTRL+A X`.
 
 ## Level Select
-Once the game loads, you will be prompted to select a level. There are currently 155 levels which can be selected by entering a number from 1 - 155 and hitting `Return` (level data taken from MIT's 6.009 and can be found [here](https://py.mit.edu/spring22/labs/lab02)). Entering 0 will terminate the program (note that this does not terminate QEMU). 
+Once the game loads, you will be prompted to select a level. There are currently 155 levels; level data is taken from MIT's 6.009 and can be found [here](https://py.mit.edu/spring22/labs/lab02). Levels can be selected by entering a number from 1 - 155 and entering a newline. Entering 0 will terminate the program (note that this does not terminate QEMU). Entering any other non-negative number will result in the program asking for another input.
 
-Entering any other number (or string) has undefined behavior. That is, this will mostly result in the program ask for another input, but sometimes it loads a level even with seemingly invalid input. That is because the base 10 converter doesn't check if inputted characters are digits, it just uses ASCII codes to compute the 'value' of each character. For example, if you request level `a`, the game will load level `'a' - '0' = 97 - 48 = 49`.
+Entering a non-numeric string (including negative numbers) has undefined behavior. That is, this will mostly result in the program ask for another input, but sometimes it loads a level. That is because the base 10 converter currently doesn't check if inputed characters are digits, it just uses ASCII codes to compute the 'value' of each character. For example, if you request level `a`, the game will load level `'a' - '0' = 97 - 48 = 49`.
 
 ## Game Display
 
