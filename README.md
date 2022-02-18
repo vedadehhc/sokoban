@@ -32,7 +32,7 @@ Game displays look something like this:
 ```
 
 Here is a key of symbols included in game displays:
-- `+-#`: an immovable wall
+- `+-|#`: an immovable wall (multiple symbols are used for prettier displays: `+` is used for corners, `-` and `|` for continuous horizontal and vertical segments, respectively, and `#` for standalone walls)
 - `.`: an empty space through which both the player and boxes can move
 - `F`: a flag with no other objects atop it
 - `s`: the player
