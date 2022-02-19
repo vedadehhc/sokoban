@@ -6,7 +6,7 @@ The classic game [Sokoban](https://en.wikipedia.org/wiki/Sokoban) implemented us
 Must have QEMU installed (see [this guide](https://pdos.csail.mit.edu/6.S081/2021/tools.html) from MIT's 6.S081).
 
 ## Running
-Run `make` in the root directory to assemble and link the RISC-V code. 
+Run `make` in the root directory to assemble and link the RISC-V code (builds are included in the repository, so this is unecessary unless you change the source code).
 
 Run `make run` in the root directory to actually run the game in QEMU. 
 
