@@ -4,6 +4,8 @@
 _start:
   la 	sp, __stack_top
   call 	game
+  ebreak
+  
 
 #+------------------------------------------+
 #|				I/O helpers					|
@@ -93,6 +95,30 @@ get_char_loop:
   beqz 	a2, get_char_loop
 get_char_done:
   lb 	a0, 0(a1)
+  ret
+
+
+#	GET CHAR ASYNC
+#	Gets a character of input without waiting for input
+#	If UART indicates not ready for input, returns -1
+#
+#	Outputs:
+#	a0 = the received input (or -1 if none found)
+#
+#	Variables:
+#	a1 = UART address
+#	a2 = ready status
+#
+get_char_async:
+  li 	a1, 0x10000000
+  lb 	a2, 5(a1)
+  andi 	a2, a2, 0x01
+  beqz 	a2, get_char_async_fail
+  lb 	a0, 0(a1)
+  j		get_char_async_done
+get_char_async_fail:
+  li	a0, -1
+get_char_async_done:
   ret
 
 
@@ -455,6 +481,8 @@ interactive_game_loop:
   beq	a0, t0, interactive_lose
   li	t0, -3
   beq	a0, t0, interactive_reload
+  add	t0, a0, a1
+  beqz	t0, interactive_no_move
   mv	a5, a0
   mv	a6, a1
 # load a3, a4, a0, a1, a2 after func call
@@ -486,6 +514,7 @@ interactive_game_loop:
   call 	check_win
   li	t0, 1
   beq	a0, t0, interactive_win
+interactive_no_move:
 # load a3, a4, a0, a1, a2 after func call
   lw	a3, 0(sp)
   lw	a4, 4(sp)
@@ -524,7 +553,7 @@ user_input:
   addi	sp, sp, -4
   sw	ra, 0(sp)
 # get user input
-  call	get_char
+  call	get_char_async
   mv	t1, a0
 # check for valid inputs
   li	t2, 113					# quit value = 'q'
