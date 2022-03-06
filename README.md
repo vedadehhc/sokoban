@@ -1,6 +1,6 @@
 # Sokoban
 
-The classic game [Sokoban](https://en.wikipedia.org/wiki/Sokoban) implemented using the RISC-V ISA.
+The classic game [Sokoban](https://en.wikipedia.org/wiki/Sokoban) implemented using the RISC-V ISA. Thanks to MIT's 6.004 and course staff for assistance with learning RISC-V ISA. Special thanks to TA [Robert Durfee](https://github.com/RobertDurfee) for help in setting up QEMU and basic terminal input/output. 
 
 ## Prerequisites
 Must have QEMU installed (see [this guide](https://pdos.csail.mit.edu/6.S081/2021/tools.html) from MIT's 6.S081).
